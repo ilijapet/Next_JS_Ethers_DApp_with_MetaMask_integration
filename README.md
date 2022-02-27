@@ -53,11 +53,11 @@ Ganache is used to create local blockchain for testing purpose (Brownie under th
     (your_venv)$ ganache-cli --version
     (your_venv)$ Ganache CLI v6.12.2 (ganache-core: 2.13.2)
 
-### Starting new Brownie project
+Starting new Brownie project
 
     (your_venv)$ brownie init dapp_brownie
 
-### Brownie folder structure inside dapp_brownie
+Brownie folder structure inside dapp_brownie
 
 <br>
 
