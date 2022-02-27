@@ -183,7 +183,7 @@ Way to get your Infura end-point is over infura.io (or Alchemy or other Ethereum
 
 Ones you get you private key and Infura endpoint for Kovan test net please past that values inside your .env file in Brownie project root directory (as we describe above).
 
-Next step is to create very important brownie-config.yaml file
+Next step is to create very important brownie-config.yaml file (inside your `brownie_dev_folder`)
 
     $ vim brownie-config.yaml
 
