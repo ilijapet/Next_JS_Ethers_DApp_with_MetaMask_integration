@@ -494,4 +494,4 @@ And you should see something like this
 Now you should be able to connect your Meta Mask, submit transaction to your smart contract and read from it.
 And this basic pattern will emerge again and again through all your future DApps.
 
-<img src="./blog_pictures/8.png" width="600">
+<img src="./blog_pictures/8.png" width="800">
