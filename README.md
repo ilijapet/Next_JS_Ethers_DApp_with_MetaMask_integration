@@ -6,9 +6,9 @@
 
 <hr>
 
-Here you can find step by step guide on how to to build simple DApp on Ethereum Kovan testnet by using React framework Next.js and how to integrate your Meta Mask wallet in your DApp.
+Here you can find step by step guide on how to build DApp on Ethereum Kovan testnet by using React framework Next.js and how to integrate your Meta Mask wallet in your DApp.
 
-From tooling for smart contract development and testing purpose we will use Python based Brownie framework. And for integration between our front-end and deployed smart contract we will use Ethers.js library.
+From tooling for smart contract development we will use Python based Brownie framework. And for integration between our front-end and deployed smart contract we will use Ethers.js library.
 
 <br>
 <hr>
@@ -17,7 +17,7 @@ From tooling for smart contract development and testing purpose we will use Pyth
 
 <hr>
 
-We assume that you already have installed on your local machine Python >= 3.6.0, Node, Yarn, NPM, NVM and Meta Mask extension (if you don't have please install them first and then move forward).
+We assume that you already have installed on your local machine Python >= 3.6.0, Node, Yarn and Meta Mask extension (if you don't have please install them first and then move forward).
 
 Let`s first create new next.js app.
 
@@ -36,7 +36,7 @@ Creating virtual environment
     $ pipenv shell
     $ ...Successfully created virtual environment!
 
-Lets now instal pipx (recommendent way to install Brownie), eth-brownie and ganache-cli
+Lets now install pipx (recommendent way to install eth-brownie)
 
     (your_venv)$ python3 -m pip install pipx
     (your_venv)$ python3 -m pipx ensurepath
@@ -47,9 +47,9 @@ Install Brownie
     (your_venv)$ pipx install eth-brownie
     (your_venv)$ ...done! ✨ 🌟 ✨
 
-Install ganache-cli. Ganache is used to create blockchain on our local machine for testing purpose. Brownie under the hood use Ganache for same purpose.
+Ganache is used to create local blockchain for testing purpose (Brownie under the hood use also Ganache).
 
-    (your_venv)$ npm install -g ganache-cli
+    (your_venv)$ yarn global add ganache-cli
     (your_venv)$ ganache-cli --version
     (your_venv)$ Ganache CLI v6.12.2 (ganache-core: 2.13.2)
 
@@ -78,7 +78,7 @@ Install ganache-cli. Ganache is used to create blockchain on our local machine f
 
 Go to dapp_brownie subfolder `/contract` and create file `SimpleContract.sol`
 
-Inside that file past following code
+Inside that file past following Solidity code
 
     // SPDX-License-Identifier: MIT
 
@@ -123,11 +123,13 @@ You should get something like
 
 Cool now we have our smart contract compiled. There is three additional steps before we move on integration with front end:
 
-1. Found your account with Kovan test ETH
+1. Fund our account with Kovan testnet ETH
 1. Write deploy script
 1. Deploy smart contract to Kovan testnet
 
-Kovan test ETH you can get by passing your ETH addresses from Meta Mask to following two sites (here is where you can get address in MetaMask)
+Testnet ETH you can get by passing your ETH addresses to following two sites
+
+(here is where you can get address in MetaMask)
 
 <br>
 <img src=".\blog_pictures\1.png" width="400">
@@ -139,7 +141,7 @@ or from Chainlink
 
     https://docs.chain.link/docs/link-token-contracts/#ethereum
 
-After few seconds you should see in your wallet test ETH (please make sure that you change you network from mainnet to kovan)
+After few seconds you should see in your wallet testnet ETH (please make sure that you change you network from mainnet to kovan)
 
 <br>
 
@@ -156,18 +158,18 @@ Inside your Brownie project root directory maker .env file
 And inside .env file please add following elements
 
     # Here we have private key export
-    PRIVATE_KEY=your_private_key_from_metamask
+    PRIVATE_KEY="your_private_key_from_metamask"
 
-    # Then we should ad infura entry point though which we will approach to ethereum
+    # Then we should add Infura entry point through which we will approach Ethereum blockchain
     export WEB3_INFURA_PROJECT_ID=your_kovan_testnet_infura_endpoint
 
 <br>
 
-BUT BEAFORE WE CONTINUE FURTHER PLEASE:
+BUT BEFORE YOU CONTINUE PLEASE:
 
-1. DON'T USE PRIVATE KEYS FROM ACCOUNT THAT YOU USE FOR ANY KIND OF REAL TRANSACTION. OPEN NEW PROFILE IN YOUR LET'S SAY BRAVE BROWSER AND INSIDE THAT NEW PROFILE INSTALL AGAIN METAMASK EXTENSION (WITH NEW SEED PHRASE). AND USE ONLY THAT WORKING PROFILE WHILE EXPERIMENTING AND DEVLOPING YOUR DApps.
+1. DON'T USE PRIVATE KEYS FROM ACCOUNT YOU USE FOR ANY KIND OF REAL TRANSACTION. OPEN NEW PROFILE IN YOUR LET'S SAY BRAVE BROWSER AND INSIDE THAT NEW PROFILE INSTALL AGAIN METAMASK EXTENSION (WITH NEW SEED PHRASE). AND USE ONLY THAT WORKING PROFILE WHILE EXPERIMENTING AND DEVLOPING YOUR DApps.
 
-2. PLEASE ADD .ENV FILE TO YOUR .GITIGNORE FILE
+2. PLEASE ADD .ENV FILE TO YOUR .GITIGNORE FILE!
 
 Way to get private keys from your Meta Mask is
 
@@ -175,7 +177,7 @@ Way to get private keys from your Meta Mask is
 
 <img src="./blog_pictures/31.png" width="400">
 
-Way to get your Infura end point please just go to infura.io, open your account and find your Kovan keys (past to newly created .env file)
+Way to get your Infura end-point is over infura.io (or Alchemy or other Ethereum node provider). Open your account there and find your Kovan keys (past to newly created .env file)
 
     https://infura.io/
 
@@ -233,7 +235,7 @@ Here Brownie informs us that deployment was successful and our smart contract is
 
 <br>
 
-important: Brownie automatically take care about all addresses to which we deploy some version of our contract. And this is how we can always go back to some previous version. If you go to `./build/` deployments folder you will find map.json file. And inside that file you will see all kovan test net addresses to which your smart contract has been deployed.
+Important: Brownie automatically take care about all addresses to which we deploy some version of our contract. And this is how we can always go back to some previous version. If you go to `./build/deployments` folder you will find `map.json` file. Inside that file you will see all Kovan addresses to which your smart contract has been deployed.
 
         {
         "42": {
@@ -245,35 +247,28 @@ important: Brownie automatically take care about all addresses to which we deplo
         }
         }
 
-In same folder `./build/contracts` you have ABI as result of compilation process. This ABI, together with deployment address and node provider are main elements when we now start to build integration with our front end.
+In same folder `./build/contracts` you have contracts ABI as result of our compilation process. This ABI, together with address of deployed contract and node provider are our main elements when we now start to build integration with front-end.
+
+<hr>
 
 # Front-end and integration
 
-Lets us move to front end and how we actually integrate our page with functionality we coded inside our smart contract.
-
-In Brownie project root dir make `./client` sub-folder (in this version we will code front-end in React framework Next.js)
+Lets us now move to front-end and how we actually integrate our next.js app with functionality we have inside our smart contract.
 
 From `nextjs_dapp` folder
 
     $cd pages
 
-Inside that folder open `index.js`.
+Inside that folder open `index.js` and erase existing code and past following one
 
-Please erase existing code from index.js and past following one
-
-Important: inside code comments you will be able to read detail description of what every line of code is doing. Please take your time and go line by line.
-
-## Java Script file
-
-<hr>
 <br>
 
     import style from "../styles/Home.module.css";
-
     import { useState, useEffect } from "react";
     import { ethers } from "ethers";
 
     export default function Home() {
+      // defining useState
       const [isConnected, setIsConnected] = useState(false);
       const [buttonConnect, setButtonConnect] = useState("Connect");
       const [name, setName] = useState("");
@@ -450,7 +445,7 @@ Important: inside code comments you will be able to read detail description of w
 
 <hr>
 
-In `./style` folder of root directory open Home.module.css and globals.css files. And past inside gobals following styling:
+In `./style` folder of root directory open `Home.module.css` and `globals.css` files. Past inside `globals.css` file some basic styling:
 
     body {
     text-align: center;
@@ -468,7 +463,7 @@ In `./style` folder of root directory open Home.module.css and globals.css files
       font-size: 30px;
     }
 
-Inside ome.module.css past following code
+Then inside `Home.module.css` past following code:
 
     .universalBtn {
       border: none;
@@ -501,8 +496,4 @@ And you should see something like this
 Now you should be able to connect your Meta Mask, submit transaction to your smart contract and read from it.
 And this basic pattern will emerge again and again through all your future DApps.
 
-<img src="./blog_pictures/8.png" width="405">
-
-Here on this address you can test DApp by youself
-
-https://ilijapet.github.io/Simple-DApp-with-MetaMask-integration/client/
+<img src="./blog_pictures/8.png" width="600">
