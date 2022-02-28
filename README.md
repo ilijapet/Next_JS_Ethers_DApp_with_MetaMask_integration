@@ -495,3 +495,7 @@ Now you should be able to connect your Meta Mask, submit transaction to your sma
 And this basic pattern will emerge again and again through all your future DApps.
 
 <img src="./blog_pictures/8.png" width="800">
+
+Here on this address you can paly with DApp
+
+https://next-js-ethers-dapp-with-metamask-integration-one.vercel.app/
