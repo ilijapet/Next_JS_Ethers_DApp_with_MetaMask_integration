@@ -53,11 +53,11 @@ Ganache is used to create local blockchain for testing purpose (Brownie under th
     (your_venv)$ ganache-cli --version
     (your_venv)$ Ganache CLI v6.12.2 (ganache-core: 2.13.2)
 
-### Starting new Brownie project
+Starting new Brownie project
 
     (your_venv)$ brownie init dapp_brownie
 
-### Brownie folder structure inside dapp_brownie
+Brownie folder structure inside dapp_brownie
 
 <br>
 
@@ -181,11 +181,9 @@ Way to get your Infura end-point is over infura.io (or Alchemy or other Ethereum
 
     https://infura.io/
 
-Infura is node provider. And to approach to Ethereum blockchain you need to have or your local node or to use some node service as Infura or Alchemy.
-
 Ones you get you private key and Infura endpoint for Kovan test net please past that values inside your .env file in Brownie project root directory (as we describe above).
 
-Next step is to create very important brownie-config.yaml file
+Next step is to create very important brownie-config.yaml file (inside your `brownie_dev_folder`)
 
     $ vim brownie-config.yaml
 
@@ -496,4 +494,4 @@ And you should see something like this
 Now you should be able to connect your Meta Mask, submit transaction to your smart contract and read from it.
 And this basic pattern will emerge again and again through all your future DApps.
 
-<img src="./blog_pictures/8.png" width="600">
+<img src="./blog_pictures/8.png" width="800">
