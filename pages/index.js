@@ -133,44 +133,42 @@ export default function Home() {
 
   return (
     <>
-      <div>
-        <button
-          className={style.universalBtn}
-          onClick={() => connectWallet()}
-          disabled={isConnected}
-        >
-          {buttonConnect}
-        </button>
+      <button
+        className={style.universalBtn}
+        onClick={() => connectWallet()}
+        disabled={isConnected}
+      >
+        {buttonConnect}
+      </button>
 
-        <input
-          type="text"
-          placeholder="name"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-        ></input>
-        <button
-          type="submit"
-          className={style.universalBtn}
-          onClick={() => update(newName)}
-        >
-          Write name
-        </button>
+      <input
+        type="text"
+        placeholder="name"
+        value={newName}
+        onChange={(e) => setNewName(e.target.value)}
+      ></input>
+      <button
+        type="submit"
+        className={style.universalBtn}
+        onClick={() => update(newName)}
+      >
+        Write name
+      </button>
 
-        <input
-          type="number"
-          placeholder="Index position"
-          value={indexPosition}
-          onChange={(e) => setIndexPostion(e.target.value)}
-        ></input>
+      <input
+        type="number"
+        placeholder="Index position"
+        value={indexPosition}
+        onChange={(e) => setIndexPostion(e.target.value)}
+      ></input>
 
-        <button
-          className={style.universalBtn}
-          onClick={() => read(indexPosition)}
-        >
-          Read name
-        </button>
-        <span> You search for following name: {name}</span>
-      </div>
+      <button
+        className={style.universalBtn}
+        onClick={() => read(indexPosition)}
+      >
+        Read name
+      </button>
+      <span> You search for following name: {name}</span>
     </>
   );
 }
